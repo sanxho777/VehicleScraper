@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Scraper and Lister</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles/sidepanel.css">
+</head>
+<body class="bg-gray-50 font-sans min-h-screen">
+    <div class="flex flex-col h-full">
+        <!-- Header -->
+        <div class="bg-blue-600 text-white p-4 shadow-md">
+            <h1 class="text-xl font-bold mb-2">Vehicle Scraper</h1>
+            <div class="flex items-center gap-2">
+                <button id="scrapeBtn" class="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm transition-colors">
+                    <span id="scrapeIcon">🔍</span>
+                    <span id="scrapeText">Scrape Page</span>
+                </button>
+                <button id="exportBtn" class="bg-green-500 hover:bg-green-700 text-white px-4 py-2 rounded text-sm transition-colors">
+                    📤 Export
+                </button>
+            </div>
+        </div>
+
+        <!-- Status Bar -->
+        <div id="statusBar" class="bg-gray-200 px-4 py-2 text-sm hidden">
+            <div class="flex items-center gap-2">
+                <div id="statusIndicator" class="w-3 h-3 rounded-full bg-green-500"></div>
+                <span id="statusText">Ready</span>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="p-4 border-b border-gray-200">
+            <div class="flex flex-col gap-3">
+                <div class="grid grid-cols-2 gap-2">
+                    <input id="searchInput" type="text" placeholder="Search vehicles..." 
+                           class="px-3 py-2 border border-gray-300 rounded focus:border-blue-500 focus:outline-none text-sm">
+                    <select id="siteFilter" class="px-3 py-2 border border-gray-300 rounded focus:border-blue-500 focus:outline-none text-sm">
+                        <option value="">All Sites</option>
+                        <option value="autotrader">AutoTrader</option>
+                        <option value="cars">Cars.com</option>
+                        <option value="cargurus">CarGurus</option>
+                        <option value="carmax">CarMax</option>
+                        <option value="facebook">Facebook</option>
+                        <option value="craigslist">Craigslist</option>
+                    </select>
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <select id="yearFilter" class="px-3 py-2 border border-gray-300 rounded focus:border-blue-500 focus:outline-none text-sm">
+                        <option value="">All Years</option>
+                    </select>
+                    <select id="makeFilter" class="px-3 py-2 border border-gray-300 rounded focus:border-blue-500 focus:outline-none text-sm">
+                        <option value="">All Makes</option>
+                    </select>
+                </div>
+                <div class="flex gap-2">
+                    <button id="clearFilters" class="px-3 py-1 bg-gray-300 hover:bg-gray-400 text-gray-700 rounded text-sm transition-colors">
+                        Clear Filters
+                    </button>
+                    <span id="vehicleCount" class="px-3 py-1 text-sm text-gray-600">0 vehicles</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vehicle List -->
+        <div class="flex-1 overflow-auto">
+            <div id="vehicleList" class="p-4">
+                <div id="emptyState" class="text-center py-8 text-gray-500">
+                    <div class="text-4xl mb-2">🚗</div>
+                    <p class="text-lg font-medium mb-2">No vehicles scraped yet</p>
+                    <p class="text-sm">Navigate to an automotive website and click "Scrape Page" to get started</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div id="loadingOverlay" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+            <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                <div class="animate-spin w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full mx-auto mb-4"></div>
+                <p class="text-gray-700">Scraping vehicle data...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="utils/storage.js"></script>
+    <script src="sidepanel.js"></script>
+</body>
+</html>

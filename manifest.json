@@ -1,0 +1,67 @@
+{
+  "manifest_version": 3,
+  "name": "Vehicle Scraper and Lister",
+  "version": "1.0.0",
+  "description": "A tool to scrape and manage vehicle listings from automotive websites",
+  "author": "Vehicle Scraper Team",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.autotrader.com/*",
+        "https://www.cars.com/*",
+        "https://www.cargurus.com/*",
+        "https://www.carmax.com/*",
+        "https://www.vroom.com/*",
+        "https://www.carvana.com/*",
+        "https://www.facebook.com/marketplace/*",
+        "https://craigslist.org/*",
+        "https://*.craigslist.org/*"
+      ],
+      "js": [
+        "utils/storage.js",
+        "utils/vehicle-parser.js",
+        "content-scripts/site-detector.js",
+        "content-scripts/scraper.js"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "permissions": [
+    "storage",
+    "sidePanel",
+    "activeTab",
+    "unlimitedStorage",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://www.autotrader.com/*",
+    "https://www.cars.com/*",
+    "https://www.cargurus.com/*",
+    "https://www.carmax.com/*",
+    "https://www.vroom.com/*",
+    "https://www.carvana.com/*",
+    "https://www.facebook.com/*",
+    "https://craigslist.org/*",
+    "https://*.craigslist.org/*"
+  ]
+}
