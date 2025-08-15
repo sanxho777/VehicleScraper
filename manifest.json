@@ -51,7 +51,8 @@
     "sidePanel",
     "activeTab",
     "unlimitedStorage",
-    "scripting"
+    "scripting",
+    "alarms"
   ],
   "host_permissions": [
     "https://www.autotrader.com/*",
